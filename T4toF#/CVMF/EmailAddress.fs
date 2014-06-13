@@ -1,9 +1,8 @@
 ﻿// FILE: EmailAddress.fs
-
 module EmailAddress  
 
 // encapsulated type
-type T = EmailAddress of string
+type _T = EmailAddress of string
 
 // wrap
 let create (s:string) = 

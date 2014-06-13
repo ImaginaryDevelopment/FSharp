@@ -47,11 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EmailAddress.fsi" />
-    <Compile Include="EmailAddressClient.fs" />
     <Compile Include="EmailAddress.fs" />
-    <Compile Include="Library1.fs" />
+    <Compile Include="MemberId.fsi" />
+    <Compile Include="MemberId.fs" />
+    <Compile Include="EmailAddressClient.fs" />
+    <Compile Include="MemberIdClient.fs" />
     <None Include="Script.fsx" />
-    <Compile Include="EmailAddress.generated.fsi" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>

@@ -1,12 +1,11 @@
-﻿// FILE: EmailAddress.fsi
-
+// EmailAddress.fsi
 module EmailAddress  
 
 // encapsulated type
-type T
+type _T
 
 // wrap
-val create : string -> T option
+val create : string -> _T option
     
 // unwrap
-val value : T -> string
+val value : _T -> string
