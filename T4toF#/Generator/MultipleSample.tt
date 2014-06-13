@@ -1,0 +1,21 @@
+﻿<#@ template debug="True" language="C#" hostspecific="True" #>
+<#@ output extension=".xsl"#>
+<#@ include file="MultipleOutputHelper.ttinclude" #>
+<#  bool doMultiFile=true;
+#>
+<# var manager = Manager.Create(Host, GenerationEnvironment);#>
+Main file output
+<# manager.StartNewFile("..\\CVMF\\EmailAddress.generated.fsi","CVMF.fsproj"); #>
+
+module EmailAddress  
+
+// encapsulated type
+type T
+
+// wrap
+val create : string -> T option
+    
+// unwrap
+val value : T -> string
+<# manager.EndBlock(); #>
+<# manager.Process(doMultiFile); #> 
