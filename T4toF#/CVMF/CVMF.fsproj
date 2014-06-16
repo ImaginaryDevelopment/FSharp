@@ -48,7 +48,6 @@
   <ItemGroup>
     <Compile Include="EmailAddress.fsi" />
     <Compile Include="EmailAddress.fs" />
-    <Compile Include="MemberId.fsi" />
     <Compile Include="MemberId.fs" />
     <Compile Include="EmailAddressClient.fs" />
     <Compile Include="MemberIdClient.fs" />

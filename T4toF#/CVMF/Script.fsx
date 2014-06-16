@@ -6,7 +6,16 @@
 open MemberId
 
 // Define your library scripting code here
-let x = MemberId.create(1)
-match x with
-    | MemberId.MemberId(i) -> printfn "hello int! %i" x
-    | MemberId(guid) -> printfn "hello guid! %A" x
+
+let y = MemberId 5
+let z = MemberId -5
+match y with
+| Some(MemberId x) -> printfn "memberid has some %A %i" y x
+| None -> printfn "memberId has none"
+| _ -> printfn "default case, y?"
+
+
+match z with
+| Some(MemberId x) -> printfn "memberid has some %A %i" y x
+| None -> printfn "memberId has none"
+| _ -> printfn "default case, y?"

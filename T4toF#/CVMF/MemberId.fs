@@ -1,8 +1,12 @@
 ﻿module MemberId
 open System
-type _T = 
-    | Id of int
+
+type MemberId = 
+    | MemberId of int
     | MemberGuid of Guid
 
-let createId id = Some(Id(id))
-let createGuid guid = Some(MemberGuid( guid))
+// Shadow constructors
+let MemberId  x = if x > 0 then Some (MemberId x) else None
+let MemberGuid x = Some (MemberGuid x)
+
+
