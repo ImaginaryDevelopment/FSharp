@@ -1,0 +1,26 @@
+﻿<#@ template debug="True" language="C#" hostspecific="True" #>
+<#@ output extension=".txt"#>
+<#@ include file="MultipleOutputHelper.ttinclude" #>
+<#  bool doMultiFile=true;
+	var typesToGen = new Dictionary<string,string>(){{"EmailAddress","string"}};
+#>
+Main file output
+<# var manager = Manager.Create(Host, GenerationEnvironment);
+
+foreach(var type in typesToGen.Keys){
+Write(type);
+manager.StartNewFile("..\\CVMF\\EmailAddress.generated.fsi","CVMF.fsproj");
+#>
+// <#=type#>.fsi
+module EmailAddress  
+
+// encapsulated type
+type T
+
+// wrap
+val create : <#=typesToGen[type]#> -> T option
+    
+// unwrap
+val value : T -> <#=typesToGen[type]#>
+<# manager.EndBlock(); }#>
+<# manager.Process(doMultiFile); #> 

@@ -46,32 +46,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="EnvDteHelper.ttinclude" />
-    <None Include="EnvDteSample.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EnvDteSample.txt</LastGenOutput>
-    </None>
     <None Include="MultipleOutputHelper.ttinclude" />
-    <None Include="MultipleSample.tt">
+    <None Include="DuEncapsulator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MultipleSample.xsl</LastGenOutput>
+      <LastGenOutput>DuEncapsulator.txt</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="EnvDteSample.txt">
+    <Content Include="DuEncapsulator.txt">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EnvDteSample.tt</DependentUpon>
-    </Content>
-    <Content Include="MultipleSample.xsl">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MultipleSample.tt</DependentUpon>
+      <DependentUpon>DuEncapsulator.tt</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
