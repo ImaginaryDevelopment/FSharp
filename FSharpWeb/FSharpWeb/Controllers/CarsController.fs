@@ -13,17 +13,19 @@ type CarsController() =
     inherit ApiController()
 
     let values = [| { Make = "Ford"; Model = "Mustang" }; { Make = "Nissan"; Model = "Titan" } |]
-    [<Route("cars/html")>]
+
+    [<Route("cars")>]
     [<HttpGet>]
     member x.Html() =
-        
+        // http://aspguy.wordpress.com/2013/09/10/web-api-and-returning-a-razor-view/
         let viewPath = System.Web.HttpContext.Current.Server.MapPath("""~/Views/Cars.cshtml""")
 
         let template = System.IO.File.ReadAllText(viewPath)
-        let rendered = RazorEngine.Razor.Parse(template) // https://github.com/Antaris/RazorEngine
+        let rendered = RazorEngine.Razor.Parse(template) // https://github.com/Antaris/RazorEngine (does not include url or html helpers =/ )
         let response = new HttpResponseMessage(HttpStatusCode.OK)
         response.Content <- new StringContent(rendered)
         response.Content.Headers.ContentType <- new MediaTypeHeaderValue("text/html")
         response
+
     /// Gets all values.
     member x.Get() = values
