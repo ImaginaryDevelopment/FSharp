@@ -11,6 +11,9 @@ type CarsController() =
     inherit ApiController()
 
     let values = [| { Make = "Ford"; Model = "Mustang" }; { Make = "Nissan"; Model = "Titan" } |]
-
+    member x.Html() =
+        let viewPath = System.Web.HttpContext.Current.Server.MapPath("""~/Views/CarsController/Cars.cshtml""")
+        let template = System.IO.File.ReadAllText(viewPath)
+        ViewRenderer
     /// Gets all values.
     member x.Get() = values
