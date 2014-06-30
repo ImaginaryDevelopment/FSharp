@@ -47,6 +47,8 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PrimitiveExtensions.fs" />
+    <Compile Include="FExtensions.fs" />
     <Compile Include="Shape.fs" />
     <Compile Include="Time.fs" />
     <Compile Include="Imperial.fs" />
