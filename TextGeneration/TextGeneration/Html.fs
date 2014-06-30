@@ -32,10 +32,12 @@ type Tag =
         | ContentTag(name,content, attrs) -> notSelfClosed name attrs content
 
 let private tagConstructor construction (name:string) attrs =
-        match (name,attrs) with
-        |(name,None) when name<>null && name.Length > 0 -> Some(construction(name,None))
-        |(name,Some(attribs:Attribute list)) when name <> null && name.Length>0 && attribs <> [] -> Some(construction(name,Some(attribs)))
-        | _ -> None
+        if(name=null || name.Length=0)
+        then None
+        else
+            match attrs with
+            |Some(attribs:Attribute list) when attribs<>[] -> Some(construction(name,Some(attribs)))
+            | _ -> Some(construction(name,None))
 
 let SelfClosed = tagConstructor SelfClosed
 let EmptyTag = tagConstructor EmptyTag
