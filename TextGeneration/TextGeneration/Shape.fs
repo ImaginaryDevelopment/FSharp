@@ -8,11 +8,10 @@ type Shape =
     | Rectangle of float*float // width * height
     | Square of float 
     with
-        static member Pi = 3.14
         member s.Area() = 
             match s with 
-            | Circle radius -> Shape.Pi * radius
-            | Rectangle( width,height) -> width*height
-            | Square width -> width*width
+            | Circle radius -> System.Math.PI * radius
+            | Rectangle( width,height) -> width * height
+            | Square width -> width * width
 
 

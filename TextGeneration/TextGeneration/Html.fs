@@ -43,12 +43,20 @@ let ContentTag name attrs content=
     
 let heading n = sprintf "h%d" n |> ContentTag
 let para = ContentTag "p"
+let scriptSrc = EmptyTag "script"
+let scriptContent = ContentTag "script"
+
+#if DEBUG
 let Tests () = 
-    let content = """Creating DSLs with F#"""
-    let testHeading = heading 1 None content
-    let expected = "<h1>"+content+"</h1>"
-    match  testHeading with
-    |Some(x) -> match x.ToString() with
-                | actual when actual = expected -> ()
-                | actual -> printfn "expected %s to be %s" actual expected
-    |None -> failwith "Test heading did not generate"
+    
+    let headingTest () =
+        let content = """Creating DSLs with F#"""
+        let testHeading = heading 1 None content
+        let expected = "<h1>"+content+"</h1>"
+        match  testHeading with
+        |Some(x) -> match x.ToString() with
+                    | actual when actual = expected -> ()
+                    | actual -> printfn "expected %s to be %s" actual expected
+        |None -> failwith "Test heading did not generate"
+    headingTest()
+#endif
