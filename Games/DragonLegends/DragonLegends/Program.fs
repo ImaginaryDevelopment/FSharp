@@ -10,6 +10,7 @@ let main argv =
     let y = 25
     let objects = 2
     let seed = 1
+    let rect1 = LandGenerator.GenerateMass 0 
     WinForm.RunWinForm()
     let quit = Console.ReadLine()
     0 // return an integer exit code

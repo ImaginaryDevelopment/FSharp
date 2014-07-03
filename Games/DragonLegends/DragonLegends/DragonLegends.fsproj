@@ -49,6 +49,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Shapes.fs" />
     <Compile Include="LandGenerator.fs" />
     <Compile Include="WinForm.fs" />
     <Compile Include="Program.fs" />
