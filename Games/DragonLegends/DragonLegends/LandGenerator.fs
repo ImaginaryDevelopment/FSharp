@@ -23,14 +23,27 @@ let inline GenerateLine<[<Measure>]'T> (rnd:System.Random) (min:int< 'T >) (max:
     let vDir = if v1 - min > max-v1 then -1 else 1 // it is farther to which wall?
     let v2 =nextRnd (if vDir= -1 then min else v1) (if vDir = -1 then v1 else max)
     (mini v1 v2,maxi v1 v2)
+type Rectangle2D (left,right,top,bottom) =
+    do 
+        if left>right then failwith "left>right"
+        if bottom>top then failwith "bottom>top"
+    member x.Left = left
+    member x.Right = right
+    member y.Top = top
+    member y.Bottom = bottom
+    member x.Width = left-right
+    member y.Height = top-bottom
 
-let GenerateMass (xMin:int<X>) (xMax:int<X>) yMin yMax seed = 
+let GenerateMass (xMin:int<X>) (xMax:int<X>) (yMin:int<Y>) (yMax:int<Y>) seed = 
+    if(xMin>xMax) then
+        failwith "xMin>xMax"
+    if(yMin>yMax) then
+        failwith "yMin>yMax"
     let rnd = Random(seed)
-    let xLine = GenerateLine rnd xMin xMax
-    let yLine = GenerateLine rnd yMin yMax
-    let x=rnd.Next(int(xMin),int(xMax)+1)*1<X>
-    let y=rnd.Next(yMin,yMax+1)
-    let xDir = if x-xMin > xMax-x then -1 else 1 // it is farther to which wall?
-    let x2 = rnd.Next((if xDir= -1 then xMin else x), (if xDir= -1 then x+1 else xMax+1 ))
-    let xVal = (Math.Min(x,x2), Math.Max(x,x2))
-    0
+    let (x1,x2) = GenerateLine rnd xMin xMax
+    if(x1<xMin) then failwith "x1<xMin"
+    if(x2<x1) then failwith "x2<x1"
+    if(xMax<x2) then failwith "xMax<x2"
+
+    let (y1,y2) = GenerateLine rnd yMin yMax
+    Rectangle2D(x1,x2,y1,y2) //enough information to make a rectangle x1..x2 and y1..y2
