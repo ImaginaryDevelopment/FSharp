@@ -12,7 +12,7 @@ type Direction =
     |West
 
 // http://davefancher.com/2012/11/18/f-more-on-units-of-measure/
-let inline GenerateLine<[<Measure>]'T> (rnd:System.Random, min:int< 'T >, max:int<_>) : (int<'T> * int<'T>) =
+let inline GenerateLine<[<Measure>]'T> (rnd:System.Random) (min:int< 'T >) (max:int<_>) : (int<'T> * int<'T>) =
     let inline _measure i = LanguagePrimitives.Int32WithMeasure(i)
     let inline nextRnd l u =_measure (rnd.Next(int(l),(int(u)+1)))
     let inline mini x y = _measure (Math.Min(int(x),int(y)))
@@ -26,7 +26,7 @@ let inline GenerateLine<[<Measure>]'T> (rnd:System.Random, min:int< 'T >, max:in
 
 let GenerateMass (xMin:int<X>) (xMax:int<X>) yMin yMax seed = 
     let rnd = Random(seed)
-    let xLine = GenerateLine (rnd, xMin, xMax) 
+    let xLine = GenerateLine rnd xMin xMax
     let yLine = GenerateLine rnd yMin yMax
     let x=rnd.Next(int(xMin),int(xMax)+1)*1<X>
     let y=rnd.Next(yMin,yMax+1)
