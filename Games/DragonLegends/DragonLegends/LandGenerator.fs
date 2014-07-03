@@ -12,12 +12,17 @@ type Direction =
     |West
 
 // http://davefancher.com/2012/11/18/f-more-on-units-of-measure/
-let inline GenerateLine<'T> (rnd:System.Random, min:int<_>, max:int<_>) : (int<_> * int<_>) =
-    let one = max * 0<_> + 1<_>
-    let v1:int< ^a > = rnd.Next(int(min),int(max)+1) * 1<_>
+let inline GenerateLine<[<Measure>]'T> (rnd:System.Random, min:int< 'T >, max:int<_>) : (int<'T> * int<'T>) =
+    let inline _measure i = LanguagePrimitives.Int32WithMeasure(i)
+    let inline nextRnd l u =_measure (rnd.Next(int(l),(int(u)+1)))
+    let inline mini x y = _measure (Math.Min(int(x),int(y)))
+    let inline maxi x y = _measure (Math.Max(int(x),int(y)))
+
+    let v1 = nextRnd min max
+    //let vTest = LanguagePrimitives.Int32WithMeasure(rnd.Next(int(min),int(max)+1))
     let vDir = if v1 - min > max-v1 then -1 else 1 // it is farther to which wall?
-    let v2 = rnd.Next((if vDir= -1 then min else v1),(if vDir = -1 then v1+1 else max+1))
-    (1<_>*Math.Min(v1,v2),Math.Max(v1,v2))
+    let v2 =nextRnd (if vDir= -1 then min else v1) (if vDir = -1 then v1 else max)
+    (mini v1 v2,maxi v1 v2)
 
 let GenerateMass (xMin:int<X>) (xMax:int<X>) yMin yMax seed = 
     let rnd = Random(seed)
