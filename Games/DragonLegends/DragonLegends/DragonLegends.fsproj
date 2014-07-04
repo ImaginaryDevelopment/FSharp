@@ -53,6 +53,7 @@
     <Compile Include="LandGenerator.fs" />
     <Compile Include="WinForm.fs" />
     <Compile Include="Program.fs" />
+    <None Include="Tests.fsx" />
     <None Include="App.config" />
   </ItemGroup>
   <PropertyGroup>

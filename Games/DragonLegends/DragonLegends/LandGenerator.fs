@@ -3,7 +3,6 @@ open System
 
 open Shapes
 
-let inline FromOne() = LanguagePrimitives.GenericOne
 
 type Direction = 
     |North
@@ -12,18 +11,19 @@ type Direction =
     |West
 
 // http://davefancher.com/2012/11/18/f-more-on-units-of-measure/
-let inline GenerateLine<[<Measure>]'T> (rnd:System.Random) (min:int< 'T >) (max:int<_>) : (int<'T> * int<'T>) =
-    let inline _measure i = LanguagePrimitives.Int32WithMeasure(i)
-    let inline nextRnd l u =_measure (rnd.Next(int(l),(int(u)+1)))
-    let inline mini x y = _measure (Math.Min(int(x),int(y)))
-    let inline maxi x y = _measure (Math.Max(int(x),int(y)))
+let GenerateLine (rnd:System.Random) (min:int<_>) (max:int<_>) =
+    let ``measure`` i = LanguagePrimitives.Int32WithMeasure(i)
+    let inline nextRnd l u =``measure`` (rnd.Next(int(l),(int(u)+1))) // lower bound and upper inclusive bound
+    let inline mini a b = ``measure`` <| Math.Min(int(a), int(b))
+    let inline maxi a b = ``measure`` (Math.Max(int(a),int(b)))
 
     let v1 = nextRnd min max
-    //let vTest = LanguagePrimitives.Int32WithMeasure(rnd.Next(int(min),int(max)+1))
+    
     let vDir = if v1 - min > max-v1 then -1 else 1 // it is farther to which wall?
     let v2 =nextRnd (if vDir= -1 then min else v1) (if vDir = -1 then v1 else max)
     (mini v1 v2,maxi v1 v2)
-type Rectangle2D (left,right,top,bottom) =
+
+type Rectangle2D(left:int<X>,right:int<X>,top:int<Y>,bottom:int<Y>) =
     do 
         if left>right then failwith "left>right"
         if bottom>top then failwith "bottom>top"
