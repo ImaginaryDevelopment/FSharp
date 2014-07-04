@@ -3,6 +3,11 @@ open canopy
 open runner
 open System
 
+let exists selector = 
+    let someEle = someElement selector
+    match someEle with
+    | Some(_) -> true
+    | None -> false
 //start an instance of the firefox browser
 start firefox
 
@@ -29,7 +34,10 @@ start firefox
     "#button_clicked" == "button not clicked"
     click "#button"
     "#button_clicked" == "button clicked"
-
+ // examples : https://github.com/lefthandedgoat/canopy/blob/master/tests/basictests/Program.fs
+"taking cvs for a spin" &&& fun _ ->
+    url "http://www.clearvoicesurveys.com/"
+    true === (someElement "[id$='txtLogin']").IsSome
 //run all tests
 run()
 
