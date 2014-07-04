@@ -64,9 +64,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="UnitTest.fs" />
+    <Compile Include="ShapesTests.fs" />
     <None Include="App.config" />
     <None Include="MSTest.runsettings" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DragonLegends\DragonLegends.fsproj">
+      <Name>DragonLegends</Name>
+      <Project>{a8f7da08-b8d6-4150-bcee-7f418687fa08}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '11.0'">
