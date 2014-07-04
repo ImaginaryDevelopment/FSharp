@@ -2,15 +2,12 @@
 open canopy
 open runner
 open System
-
-let exists selector = 
-    let someEle = someElement selector
-    match someEle with
-    | Some(_) -> true
-    | None -> false
+open TestHelper
 //start an instance of the firefox browser
 start firefox
 
+let idAttr = HtmlAttribute.Create("id").Value
+let hrefAttr = HtmlAttribute.Create("href").Value
 //this is how you define a test
 "taking canopy for a spin" &&& fun _ ->
     //this is an F# function body, it's whitespace enforced
@@ -37,7 +34,12 @@ start firefox
  // examples : https://github.com/lefthandedgoat/canopy/blob/master/tests/basictests/Program.fs
 "taking cvs for a spin" &&& fun _ ->
     url "http://www.clearvoicesurveys.com/"
-    true === (someElement "[id$='txtLogin']").IsSome
+    exists <| idAttr.EndsWith "txtLogin"
+    exists <| hrefAttr.StartsWith "Privacy"
+    exists <| hrefAttr.StartsWith "Terms"
+    exists <| hrefAttr.StartsWith "Contact"
+    click <| idAttr.EndsWith "btnLogin"
+    exists <| idAttr.EndsWith "lblErrorMessage"
 //run all tests
 run()
 
