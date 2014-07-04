@@ -19,3 +19,9 @@ type ShapesTests() =
     [<TestMethod>]
     member t.``Assert Rectangle rejects 0<Y>``() =
         test <@ Rectangle 1<X> 0<Y> |> Option.isNone @>
+    [<TestMethod>]
+    member t.``Assert Rectangle rejects -1<X>``() =
+        test <@ Rectangle -1<X> 1<Y> |> Option.isNone @>
+    [<TestMethod>]
+    member t.``Assert Rectangle rejects -1<Y>``() =
+        test <@ Rectangle 1<X> -1<Y> |> Option.isNone @>
