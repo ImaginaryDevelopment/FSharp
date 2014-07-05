@@ -19,6 +19,9 @@ type HtmlAttribute private (input) =
 
 let exists selector = 
     true === (someElement selector).IsSome
+
+let idAttr = HtmlAttribute.Create("id").Value
+let hrefAttr = HtmlAttribute.Create("href").Value
 //let attribute input = 
 //    match input with
 //    | invalid when Regex.IsMatch(invalid,"""([^\t\n\f \/>"'=]+)""") -> failwithf "invalid attribute %s" input

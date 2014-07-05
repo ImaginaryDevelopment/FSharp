@@ -69,6 +69,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TestHelper.fs" />
+    <Compile Include="HelloCanopy.fs" />
+    <Compile Include="cvs.fs" />
+    <Compile Include="cvsapi.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />
     <None Include="packages.config" />
