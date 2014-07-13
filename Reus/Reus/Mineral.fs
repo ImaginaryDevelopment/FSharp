@@ -5,3 +5,7 @@
         |Salt
         |Copper
         |Iron
+        |Agate
+        |Marble
+        |Topaz
+        
