@@ -47,9 +47,13 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Planet.fs" />
+    <Compile Include="Occupants.fs" />
+    <Compile Include="Giants.fs" />
     <Compile Include="Animals.fs" />
-    <Compile Include="Mineral.fs" />
+    <Compile Include="Minerals.fs" />
+    <Compile Include="Plants.fs" />
+    <Compile Include="Inhabitants.fs" />
+    <Compile Include="Patches.fs" />
     <Compile Include="Program.fs" />
     <None Include="App.config" />
   </ItemGroup>
