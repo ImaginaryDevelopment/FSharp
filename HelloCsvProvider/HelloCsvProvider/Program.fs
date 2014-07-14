@@ -10,7 +10,7 @@ let main argv =
     let current = nflx.Rows |> Seq.head
     printfn "%s is %A as of %A" symbol current.Close current.Date
 
-    let realms = HelloTypeProviders.HelloJsonProvider.realmStatus ()
+    let realms = HelloTypeProviders.WarcraftJson.realmStatus ()
     let mapped = realms.Realms |> Seq.map (fun r -> r.Name) |> Seq.toList
     printfn "realms: %A" mapped
     System.Console.ReadLine()

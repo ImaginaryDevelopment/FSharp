@@ -1,4 +1,4 @@
-﻿module HelloCsvProvider.WarcraftJson
+﻿module HelloTypeProviders.WarcraftJson
 open FSharp.Data
 
 // sample urls so the type providers can look at sample data to generate types/intellisense
