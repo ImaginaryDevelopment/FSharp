@@ -22,8 +22,8 @@ let main argv =
     let realms = HelloTypeProviders.WarcraftJson.realmStatus ()
     let mapped = realms.Realms |> Seq.map (fun r -> r.Name) |> Seq.toList
     printfn "realms: %A" mapped
-    for i in HelloCsvProvider.query do
-        printfn "%A" i
+    //    for i in HelloCsvProvider.query do
+    //        printfn "%A" i
 
     // characters
 
@@ -34,13 +34,12 @@ let main argv =
     let maslowPets = HelloTypeProviders.WarcraftJson.petProvider "Rexxar" "Maslow"
     
     printfn "pets for %s on %s" maslowPets.Name maslowPets.Realm
+
     // printfn "pets for %s on %s pets: %A" maslowPets.Name maslowPets.Realm maslowPets.Pets
     //[ for p in maslowPets.Pets.Collected -> p]
-    let maxNameLength = maslowPets.Pets.Collected
-                    |> List.map (fun x -> x.Name.Length)
-                    |> List.max
-        //|> List.maxBy (fun x->x.Name.Length)
-        //|> List.head
+    //let maxNameLength = maslowPets.Pets.Collected |> List.map (fun x -> x.Name.Length) |> List.max
+    //|> List.maxBy (fun x->x.Name.Length)
+    //|> List.head
         
 
     for p in maslowPets.Pets.Collected do // http://langref.org/fsharp/numbers
