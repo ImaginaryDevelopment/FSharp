@@ -1,50 +1,32 @@
 ﻿// Learn more about F# at http://fsharp.net
 // See the 'F# Tutorial' project for more help.
-open FSharp.Data
-open FSharp.Data.JsonExtensions
-open HelloTypeProviders.HelloJsonProvider
+// sql ado provider http://fsprojects.github.io/FSharp.Data.SqlClient/
+// charting http://fsharp.github.io/FSharp.Data/library/CsvProvider.html
 
+open System.Windows.Forms 
+open System.Drawing
+open FSharp.Data
+open FSharp.Charting
+open System
 [<EntryPoint>]
 let main argv = 
     printfn "%A" argv
 
-    // simple json
-    printfn "%s is %i" simple.Name simple.Age
-    
     // stocks
     let symbol = "MSFT"
+    
     let nflx = HelloTypeProviders.HelloCsvProvider.Stocks.StockData symbol
+    
+    Chart.Line([ for x in 0 .. 10 -> x, x*x ]).ShowChart()
+    
+//    let form = new Form(Width= 400, Height = 300, Visible = true, Text = "Hello World") 
+//    //form.Controls.Add(new System.Windows.Forms.image chart.CopyAsBitmap)
+//    form.TopMost <- true
+//    form.Click.Add (fun _ -> form.Text <- sprintf "form clicked at %i" DateTime.Now.Ticks)
+//    form.Show()
     let current = nflx.Rows |> Seq.head
     
-    printfn "%s is %A as of %A" symbol current.Close current.Date
-    printfn "%A" nflx.Rows
-    // realms
-    let realms = HelloTypeProviders.WarcraftJson.realmStatus ()
-    let mapped = realms.Realms |> Seq.map (fun r -> r.Name) |> Seq.toList
-    printfn "realms: %A" mapped
-    //    for i in HelloCsvProvider.query do
-    //        printfn "%A" i
-
-    // characters
-
-    let maslow = HelloTypeProviders.WarcraftJson.characterProvider "Rexxar" "Maslow"
-    printfn "characterInfo for %s in %s %A" maslow.Name maslow.Realm maslow
-
-    // pets
-    let maslowPets = HelloTypeProviders.WarcraftJson.petProvider "Rexxar" "Maslow"
-    
-    printfn "pets for %s on %s" maslowPets.Name maslowPets.Realm
-
-    // printfn "pets for %s on %s pets: %A" maslowPets.Name maslowPets.Realm maslowPets.Pets
-    //[ for p in maslowPets.Pets.Collected -> p]
-    //let maxNameLength = maslowPets.Pets.Collected |> List.map (fun x -> x.Name.Length) |> List.max
-    //|> List.maxBy (fun x->x.Name.Length)
-    //|> List.head
-        
-
-    for p in maslowPets.Pets.Collected do // http://langref.org/fsharp/numbers
-        printfn "%-10s %-10s" p.Name p.CreatureName
-
+   
     // keep console open
     System.Console.ReadLine()
     0 // return an integer exit code
