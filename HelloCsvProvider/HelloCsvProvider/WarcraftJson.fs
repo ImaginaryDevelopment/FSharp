@@ -8,4 +8,7 @@ let [<Literal>] characterPetsUri = "http://us.battle.net/api/wow/character/Rexxa
 
 type WowRealmStatusProvider = JsonProvider<wowRealmUri>
 type WowCharacterProvider = JsonProvider<characterUri>
+let characterProvider realm characterName = 
+    let uri = sprintf "http://us.battle.net/api/wow/character/%s/%s" realm characterName
+    WowCharacterProvider.Load  uri
 let realmStatus () = WowRealmStatusProvider.Load(wowRealmUri)

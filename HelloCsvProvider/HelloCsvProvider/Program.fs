@@ -12,6 +12,8 @@ let main argv =
 
     let realms = HelloTypeProviders.WarcraftJson.realmStatus ()
     let mapped = realms.Realms |> Seq.map (fun r -> r.Name) |> Seq.toList
+    let maslowRexxar = HelloTypeProviders.WarcraftJson.characterProvider "Rexxar" "Maslow"
     printfn "realms: %A" mapped
+    printfn "characterInfo for %s in %s %A" maslowRexxar.Name maslowRexxar.Realm maslowRexxar
     System.Console.ReadLine()
     0 // return an integer exit code
