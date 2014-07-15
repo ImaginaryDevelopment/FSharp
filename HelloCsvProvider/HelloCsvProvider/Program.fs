@@ -4,23 +4,20 @@
 // charting http://fsharp.github.io/FSharp.Data/library/CsvProvider.html
 
 open System.Windows.Forms 
+open System
 open System.Drawing
 open FSharp.Data
 open FSharp.Charting
-open System
+
+open HelloTypeProviders.HelloCsvProvider.Stocks
 [<EntryPoint>]
 let main argv = 
     printfn "%A" argv
     
+    let nflx = StockData "NFLX"
+    //let msft = Stock
+    let chartForm = (Chart.FastLine [ for row in nflx.Rows -> row.Date, row.Open ]).CreateForm()
     
-    
-//    let form = new Form(Width= 400, Height = 300, Visible = true, Text = "Hello World") 
-//    //form.Controls.Add(new System.Windows.Forms.image chart.CopyAsBitmap)
-//    form.TopMost <- true
-//    form.Click.Add (fun _ -> form.Text <- sprintf "form clicked at %i" DateTime.Now.Ticks)
-//    form.Show()
-    use form = new Form(Width=400, Height=300, Visible=true, Text="Hello charting")
-    Chart.Line([for x in 0 ..10 -> x, x+x]).ShowChart()
-    System.Windows.Forms.Application.Run(form)
+    System.Windows.Forms.Application.Run(chartForm)
     // keep console open
     0 // return an integer exit code
