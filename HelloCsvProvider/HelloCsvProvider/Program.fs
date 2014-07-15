@@ -19,8 +19,6 @@ let main argv =
 //    form.TopMost <- true
 //    form.Click.Add (fun _ -> form.Text <- sprintf "form clicked at %i" DateTime.Now.Ticks)
 //    form.Show()
-    let current = nflx.Rows |> Seq.head
-    
    
     // keep console open
     System.Console.ReadLine()
