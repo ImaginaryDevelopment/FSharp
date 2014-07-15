@@ -12,14 +12,15 @@ open System
 let main argv = 
     printfn "%A" argv
     
-    Chart.Line([ for x in 0 .. 10 -> x, x*x ]).ShowChart()
+    
     
 //    let form = new Form(Width= 400, Height = 300, Visible = true, Text = "Hello World") 
 //    //form.Controls.Add(new System.Windows.Forms.image chart.CopyAsBitmap)
 //    form.TopMost <- true
 //    form.Click.Add (fun _ -> form.Text <- sprintf "form clicked at %i" DateTime.Now.Ticks)
 //    form.Show()
-   
+    use form = new Form(Width=400, Height=300, Visible=true, Text="Hello charting")
+    Chart.Line([for x in 0 ..10 -> x, x+x]).ShowChart()
+    System.Windows.Forms.Application.Run(form)
     // keep console open
-    System.Console.ReadLine()
     0 // return an integer exit code
