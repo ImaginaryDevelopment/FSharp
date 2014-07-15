@@ -15,9 +15,14 @@ let main argv =
     printfn "%A" argv
     
     let nflx = StockData "NFLX"
-    //let msft = Stock
-    let chartForm = (Chart.FastLine [ for row in nflx.Rows -> row.Date, row.Open ]).CreateForm()
+    let msft = StockData "MSFT"
+    let chartNflx = Chart.FastLine([ for row in nflx.Rows -> row.Date, row.Open ],Name="Netflix", XTitle="Date", YTitle="Open")
+    let chartMsft = Chart.FastLine [ for row in msft.Rows -> row.Date, row.Open ]
+    let chart = Chart.Combine([ chartNflx; chartMsft]).WithLegend()
+    
+    let chartForm = (chart).CreateForm()
     
     System.Windows.Forms.Application.Run(chartForm)
+    
     // keep console open
     0 // return an integer exit code
