@@ -11,11 +11,6 @@ open System
 [<EntryPoint>]
 let main argv = 
     printfn "%A" argv
-
-    // stocks
-    let symbol = "MSFT"
-    
-    let nflx = HelloTypeProviders.HelloCsvProvider.Stocks.StockData symbol
     
     Chart.Line([ for x in 0 .. 10 -> x, x*x ]).ShowChart()
     
