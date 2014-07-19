@@ -69,7 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TestHelper.fs" />
-    <Compile Include="HelloCanopy.fs" />
+    <Compile Include="CanopySample.fs" />
     <Compile Include="cvs.fs" />
     <Compile Include="cvsapi.fs" />
     <Compile Include="Program.fs" />
