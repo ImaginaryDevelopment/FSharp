@@ -17,14 +17,11 @@ let main argv =
     
     let nflx = HelloTypeProviders.HelloCsvProvider.Stocks.StockData symbol
     
-    Chart.Line([ for x in 0 .. 10 -> x, x*x ]).ShowChart()
+    let pie = Chart.Pie([("Apples",1);("Oranges",2);("Bananas",3)])
+    pie.ShowChart()
     
-//    let form = new Form(Width= 400, Height = 300, Visible = true, Text = "Hello World") 
-//    //form.Controls.Add(new System.Windows.Forms.image chart.CopyAsBitmap)
-//    form.TopMost <- true
-//    form.Click.Add (fun _ -> form.Text <- sprintf "form clicked at %i" DateTime.Now.Ticks)
-//    form.Show()
-    let current = nflx.Rows |> Seq.head
+  
+    //let current = nflx.Rows |> Seq.head
     
    
     // keep console open
