@@ -11,19 +11,14 @@ open System
 [<EntryPoint>]
 let main argv = 
     printfn "%A" argv
-
-    // stocks
-    let symbol = "MSFT"
     
-    let nflx = HelloTypeProviders.HelloCsvProvider.Stocks.StockData symbol
     
-    let pie = Chart.Pie([("Apples",1);("Oranges",2);("Bananas",3)])
-    pie.ShowChart()
+    Chart.Line([ for x in 0 .. 10 -> x, x*x ]).ShowChart()
     
   
     //let current = nflx.Rows |> Seq.head
-    
-   
+    use form = new Form(Width=400, Height=300, Visible=true, Text="Hello charting")
+    Chart.Line([for x in 0 ..10 -> x, x+x]).ShowChart()
+    System.Windows.Forms.Application.Run(form)
     // keep console open
-    System.Console.ReadLine()
     0 // return an integer exit code
