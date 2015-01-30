@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{7A70B004-F147-4FC7-980A-1015F6DD8549}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>FsLexYacPlay</RootNamespace>
+    <AssemblyName>FsLexYacPlay</AssemblyName>
+    <TargetFrameworkVersion>v4.5.3</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <Externalconsole>true</Externalconsole>
+    <PlatformTarget>x86</PlatformTarget>
+    <Tailcalls>false</Tailcalls>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="BeforeBuild" command="..\packages\FsLexYacc.6.0.4\bin\fsyacc.exe &quot;$(ProjectDir)\SqlParser.fsp&quot; --module SqlParser" workingdir="$(ProjectDir)" pauseExternalConsole="True" />
+        <Command type="BeforeBuild" command="..\packages\FsLexYacc.6.0.4\bin\fslex.exe &quot;$(ProjectDir)\SqlLexer.fsl&quot; --unicode" workingdir="$(ProjectDir)" />
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <Externalconsole>true</Externalconsole>
+    <PlatformTarget>x86</PlatformTarget>
+    <Tailcalls>true</Tailcalls>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="FSharp.Core, Version=4.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="FsLexYacc.Runtime">
+      <HintPath>..\packages\FsLexYacc.Runtime.6.0.4\lib\net40\FsLexYacc.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Sql.fs" />
+    <None Include="SqlParser.fsp" />
+    <None Include="SqlLexer.fsl" />
+    <Compile Include="SqlParser.fsi">
+      <DependentUpon>SqlParser.fsp</DependentUpon>
+    </Compile>
+    <Compile Include="SqlParser.fs">
+      <DependentUpon>SqlParser.fsp</DependentUpon>
+    </Compile>
+    <Compile Include="SqlLexer.fs">
+      <DependentUpon>SqlLexer.fsl</DependentUpon>
+    </Compile>
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\..\Microsoft SDKs\F#\3.1\Framework\v4.0\Microsoft.FSharp.Targets" />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>
